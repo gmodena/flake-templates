@@ -1,5 +1,5 @@
 {
-  description = "jdk8 and python3.7 development environment for macOS";
+  description = "jdk8, python3.7 and pyspark development environment for macOS";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-21.11-darwin";
@@ -15,27 +15,22 @@
         mach-nix-wrapper = import mach-nix { inherit pkgs python; };
         pythonBuild = mach-nix-wrapper.mkPython {
           requirements = ''
-            black
-            pyflakes
-            isort
-            pyspark
             '';
-          providers = {
-            _default = "sdist";
+           _.tomli.propagatedBuildInputs.mod = pySelf: self: oldVal: oldVal ++ [ pySelf.flit-core ];
           };
-        };
         pkgs = import nixpkgs { inherit system; }; 
       in
         {
           devShell = pkgs.mkShell {
             buildInputs = with pkgs; [
-              (pkgs.${python}.withPackages(ps: with ps; [ pip ]))
+              (pkgs.${python}.withPackages(ps: with ps; [ pip pyspark ]))
               adoptopenjdk-openj9-bin-8
               sbt
               gradle
               pythonBuild
             ];
           };
+
         }
       );
 }
