@@ -15,6 +15,10 @@
         path = ./impure-python;
         description = "python development environment with venv (legacy projects)";
       };
+      rust = {
+        path = ./rust;
+        description = "rust development environment";
+      };
     };
   };
 }
