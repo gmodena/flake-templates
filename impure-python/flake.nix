@@ -2,7 +2,7 @@
   # Based on https://ryantm.github.io/nixpkgs/languages-frameworks/python/#python
   # (modified).
   description = "Nix Development Flake for python legacy projects";
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.11";
+  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.05";
 
   outputs =
     { self, nixpkgs, flake-utils }:
@@ -13,6 +13,7 @@
         pkgs = import nixpkgs { inherit system; };
         python = pkgs.python310;
         pythonPackages = python.pkgs;
+        requirementsFile = "requirements.txt";
         # A set of system dependencies for Python modules.
         # They act as build inputs and are used to configure
         # LD_LIBRARY_PATH in the shell.
@@ -51,7 +52,7 @@
 
           postShellHook = ''
             unset SOURCE_DATE_EPOCH
-            export LD_LIBRARY_PATH=${pkgs.lib.makeLibraryPath libraryPath}
+            export LD_LIBRARY_PATH=${pkgs.lib.makeLibraryPath systemPackages}
             pip install -r ${requirementsFile}
           '';
         };
