@@ -1,5 +1,14 @@
 # flake-templates
 A repository of flake templates.
 
-These are experiments to test polyglot project scaffolding,
-mostly on `nix-darwin`. Things will be broken.
+# Usage
+
+Init a new template with
+```
+nix flake init --template "github:gmodena/flake-templates#<template>"
+```
+
+Start a shell with a build environment bootstrapped from the template with
+```
+nix develop
+```
