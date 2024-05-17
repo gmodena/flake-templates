@@ -11,8 +11,8 @@
         path = ./minikube;
         description = "minikube development environment for macOS";
       };
-      impure-python = {
-        path = ./impure-python;
+      python = {
+        path = ./python;
         description = "python development environment with venv (legacy projects)";
       };
       rust = {
