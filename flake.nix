@@ -20,7 +20,7 @@
         description = "rust development environment";
       };
       java = {
-        path = ./java
+        path = ./java;
         descrition = "Java development environment";
       };
     };
