@@ -21,7 +21,11 @@
       };
       java = {
         path = ./java;
-        descrition = "Java development environment";
+        description = "Java development environment";
+      };
+      cpp = {
+        path = ./cppcmake;
+        description = "c++20 development environment (clang, cmake)";
       };
     };
   };
